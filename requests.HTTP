@@ -1,0 +1,26 @@
+http://localhost:3000/api/login
+Content-Type: application/json
+
+###  /*<- v important or send request wont work*/
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "username": "tester01",
+    "password": "GteteqbQQgSr88SwNExUQv2ydb7xuf8c"
+}
+###
+GET http://localhost:3000/api/clients
+Content-Type: application/json
+x-user-auth: {"username":"tester01","token":"3e1e97aeae405c231a2c448c2e5c9edc"}
+
+###
+POST http://localhost:3000/api/client/new
+Content-Type: application/json
+x-user-auth: {"username":"tester01","token":"1df6c55b636f3e9483bf2e65afb0466d"}
+
+{
+    "name": "rafael",
+    "email": "rafael@email.com",
+    "telephone": "3434534534"
+}

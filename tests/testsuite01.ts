@@ -1,18 +1,37 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from './pages/login-page';
+import { DashboardPage } from './pages/dashboard-page';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.describe('Test suite 01', () => {
+  test('Test case 01', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const dashboardPage = new DashboardPage(page);
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+    await loginPage.goto();
+    await loginPage.performLogin(`${process.env.TEST_USERNAME}`,`${process.env.TEST_PASSWORD}`)
+    await expect(page.getByRole('heading', { name: 'Tester Hotel Overview' })).toBeVisible();
+    await dashboardPage.performLogout();
+    await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible(); 
+    await page.waitForTimeout(5000);
+  });
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+/*
+test.describe('Test suite 01', () => {
+  test('Test case 01', async ({ page }) => {
+    // perform login
+    await page.goto(`${process.env.BASE_URL}`);
+    await expect(page.getByRole('link', { name: 'Tester Hotel' })).toBeVisible(); //assertion
+    await page.locator('input[type="text"]').fill(`${process.env.TEST_USERNAME}`);
+    await page.locator('input[type="password"]').fill(`${process.env.PASSWORD}`);
+    await page.getByRole('button', { name: 'Login' }).click();
+    await expect(page.getByRole('heading', { name: 'Tester Hotel Overview' })).toBeVisible();
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+    // perform logout
+   await page.getByRole('button', { name: 'Logout' }).click();
+   await expect(page.url()).toBe('http://localhost:3000/login'); //assertion
+   await expect(page.getByRole('link', { name: 'Tester Hotel' })).toBeVisible(); //assertion
+  });
 });
+*/
