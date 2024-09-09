@@ -12,7 +12,7 @@ export class LoginPage {
     this.page = page;
     this.usernameTextfield = page.locator('input[type="text"]');
     this.passwordTextfield = page.locator('input[type="password"]');
-    this.loginButton = page.getByRole('button', { name: 'Login' });
+    this.loginButton = page.getByRole('button', { name: 'Login' });    
   }
 
   // Methods / functions
@@ -24,6 +24,6 @@ export class LoginPage {
     //fill out the form - 2 textfields and click the submit button
     await this.usernameTextfield.fill(username);
     await this.passwordTextfield.fill(password);
-    await this.loginButton.click();
+    await this.loginButton.click();    
   }
 }

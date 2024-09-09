@@ -1,29 +1,21 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
-export class LoginPage {
+export class CreateRoomPage {
   //Attributes
   readonly page: Page;
-  readonly usernameTextfield: Locator; 
-  readonly passwordTextfield: Locator;
-  readonly loginButton: Locator;
+  readonly selectElement: Locator; 
+  //Add the missing attributes
 
-  //Const
   constructor(page: Page) {
     this.page = page;
-    this.usernameTextfield = page.locator('input[type="text"]');
-    this.passwordTextfield = page.locator('input[type="password"]');
-    this.loginButton = page.getByRole('button', { name: 'Login' });
+    this.selectElement = page.getByRole('combobox'); //Use the select element
+    //Add the missing attributes
   }
 
-  // Methods / functions
-  async goto() {
-    await this.page.goto(`${process.env.BASE_URL}`);
-  }
-
-  async performLogin(username: string, password:string) {
-    //fill out the form - 2 textfields and click the submit button
-    await this.usernameTextfield.fill(username);
-    await this.passwordTextfield.fill(password);
-    await this.loginButton.click();
+  async fillOutCreateRoomsForm() {
+    await this.selectElement.selectOption({ index: 0 }); //to select Double option
+    await this.selectElement.selectOption({ index: 1 }); //to select single option
+    await this.selectElement.selectOption({ index: 2 }); //to select twin option
+    //Add the missing elements that are to be filled out in the form. Think about using e.g. fakerjs
   }
 }
