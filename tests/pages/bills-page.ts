@@ -16,8 +16,4 @@ export class BillsPage {
     await this.page.goto(`${process.env.BASE_URL}`);
   }
 
-  async performLogin(username: string, password:string) {
-    //fill out the form - 2 textfields and click the submit button
-
-  }
 }
