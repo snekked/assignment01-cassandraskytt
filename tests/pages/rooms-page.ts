@@ -1,5 +1,11 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
+/*
+const features = ['Balcony', 'Ensuite', 'Sea View', 'Penthouse'];
+            const selectedFeatures = features.filter(() => Math.random());
+            for (const feature of selectedFeatures) {
+            await this.featuresSelect.selectOption({ label: feature }); }
+*/
 export class CreateRoomPage {
   //Attributes
   readonly page: Page;

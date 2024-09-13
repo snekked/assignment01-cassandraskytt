@@ -24,15 +24,15 @@ export class ClientsPage {
     await this.createClientButton.click();
   }
 
-  async createNewClient(username: string, password:string) {
+  async createNewClient(name: string, email:string, telephone:string) {
     //fill out the form - 2 textfields and click the submit button
     const fullName = faker.person.fullName();      
     const userEmail = faker.internet.email();     
     const userPhoneNo = faker.phone.number(); 
 
-    await page.locator('div').filter({ hasText: /^Name$/ }).getByRole('textbox').fill(fullName);
-    await page.locator('div').filter({ hasText: /^Email$/ }).getByRole('textbox').fill(userEmail);
-    await page.locator('div').filter({ hasText: /^Telephone$/ }).getByRole('textbox').fill(userPhoneNo);
-    await page.getByText('Save').click();
+    await this.page.locator('div').filter({ hasText: /^Name$/ }).getByRole('textbox').fill(fullName);
+    await this.page.locator('div').filter({ hasText: /^Email$/ }).getByRole('textbox').fill(userEmail);
+    await this.page.locator('div').filter({ hasText: /^Telephone$/ }).getByRole('textbox').fill(userPhoneNo);
+    await this.page.getByText('Save').click();
   }
 }
